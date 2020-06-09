@@ -129,6 +129,11 @@ var listImageCommand = &cli.Command{
 			Name:  "no-trunc",
 			Usage: "Show output without truncating the ID",
 		},
+		&cli.BoolFlag{
+			Name: "all",
+			Aliases: []string{"a"},
+			Usage: "Show all images (default hides intermediate images)", 
+		},
 	},
 	Action: func(context *cli.Context) error {
 		imageClient, conn, err := getImageClient(context)
