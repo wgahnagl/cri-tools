@@ -130,9 +130,9 @@ var listImageCommand = &cli.Command{
 			Usage: "Show output without truncating the ID",
 		},
 		&cli.BoolFlag{
-			Name: "all",
+			Name:    "all",
 			Aliases: []string{"a"},
-			Usage: "Show all images (default hides intermediate images)", 
+			Usage:   "Show all images (default hides intermediate images)",
 		},
 	},
 	Action: func(context *cli.Context) error {
@@ -169,6 +169,13 @@ var listImageCommand = &cli.Command{
 			}
 		}
 		for _, image := range r.Images {
+			status, err := ImageStatus(imageClient, image.Id, verbose)
+			if err != nil {
+				return err
+			}
+
+			fmt.Printf("wgahnagl", status)
+
 			if quiet {
 				fmt.Printf("%s\n", image.Id)
 				continue
